@@ -20,6 +20,9 @@ if(WIN32)
 endif()
 FetchContent_MakeAvailable(googletest)
 
-add_executable(test_matrix source/test.cpp source/constructors_test.cpp)
+add_executable(test_matrix
+        source/constructors_test.cpp
+        source/index_assigment_operator_test.cpp
+)
 
 target_link_libraries(test_matrix PUBLIC matrix GTest::gtest_main)

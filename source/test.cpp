@@ -5,48 +5,6 @@
 //    return std::abs(a - b) <= std::numeric_limits<double>::epsilon() * 100000;
 //}
 
-//// test for matrix assigment operators
-//TEST(matrix_assignment_operator_test, copy_assignment) {
-//    linalg::Matrix mat1(2, 3);
-//    mat1(0, 0) = 1;
-//    mat1(0, 1) = 2;
-//    mat1(0, 2) = 3;
-//    linalg::Matrix mat2;
-//    mat2 = mat1;
-//    EXPECT_EQ(mat2(0, 0), 1);
-//    EXPECT_EQ(mat2(0, 1), 2);
-//    EXPECT_EQ(mat2(0, 2), 3);
-//    EXPECT_EQ(mat2.rows(), 2);
-//    EXPECT_EQ(mat2.columns(), 3);
-//    EXPECT_FALSE(mat2.empty());
-//    linalg::Matrix mat;
-//    mat2 = mat; // NOLINT(*-unnecessary-copy-initialization)
-//    EXPECT_EQ(mat2.rows(), 0);
-//    EXPECT_EQ(mat2.columns(), 0);
-//    EXPECT_TRUE(mat2.empty());
-//    mat2 = mat2;
-//    EXPECT_EQ(mat2.rows(), 0);
-//    EXPECT_EQ(mat2.columns(), 0);
-//    EXPECT_TRUE(mat2.empty());
-//}
-//
-//TEST(matrix_assignment_operator_test, move_assignment) {
-//    linalg::Matrix mat1(2, 3);
-//    mat1(0, 0) = 1;
-//    mat1(0, 1) = 2;
-//    mat1(0, 2) = 3;
-//    linalg::Matrix mat2;
-//    mat2 = std::move(mat1);
-//    EXPECT_EQ(mat2(0, 0), 1);
-//    EXPECT_EQ(mat2(0, 1), 2);
-//    EXPECT_EQ(mat2(0, 2), 3);
-//    EXPECT_EQ(mat2.rows(), 2);
-//    EXPECT_EQ(mat2.columns(), 3);
-//    EXPECT_EQ(mat1.rows(), 0);
-//    EXPECT_EQ(mat1.columns(), 0);
-//    EXPECT_TRUE(mat1.empty());
-//}
-//
 //// test for matrix index operators
 //class matrix_index_test : public ::testing::Test {
 //protected:
