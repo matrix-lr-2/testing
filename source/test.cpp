@@ -5,34 +5,6 @@
 //    return std::abs(a - b) <= std::numeric_limits<double>::epsilon() * 100000;
 //}
 
-//// test for matrix index operators
-//class matrix_index_test : public ::testing::Test {
-//protected:
-//    linalg::Matrix m1 = {{1, 2, 3}, {4, 5, 6}};
-//    linalg::Matrix m;
-//};
-//
-//TEST_F(matrix_index_test, index_one_param) {
-//    EXPECT_EQ(m1(0), 1);
-//    EXPECT_EQ(m1(1), 2);
-//    EXPECT_THROW(m1(1000), std::runtime_error);
-//    EXPECT_THROW(m(0), std::runtime_error);
-//}
-//
-//TEST_F(matrix_index_test, two_one_param) {
-//    EXPECT_EQ(m1(0, 0), 1);
-//    EXPECT_EQ(m1(0, 1), 2);
-//    EXPECT_THROW(m1(1000, 12), std::runtime_error);
-//    EXPECT_THROW(m(0, 0), std::runtime_error);
-//}
-//
-//TEST_F(matrix_index_test, squarede_brackets) {
-//    EXPECT_EQ(m1[0][0], 1);
-//    EXPECT_EQ(m1[0][1], 2);
-//    EXPECT_THROW(m1[1000][12], std::runtime_error);
-//    EXPECT_THROW(m[0][0], std::runtime_error);
-//}
-//
 //// test for matrix comparison operators
 //TEST(matrix_comparison_operator_test, equality_operator) {
 //    linalg::Matrix mat1 = {{1, 2, 3}, {4, 5, 6}};
