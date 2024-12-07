@@ -27,6 +27,7 @@ add_executable(test_matrix
         source/comparison_test.cpp
         source/arithmetic_test.cpp
         source/math_methods_test.cpp
+        source/method_test.cpp
 )
 
 target_link_libraries(test_matrix PUBLIC matrix GTest::gtest_main)
