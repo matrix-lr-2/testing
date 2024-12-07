@@ -5,65 +5,8 @@
 //    return std::abs(a - b) <= std::numeric_limits<double>::epsilon() * 100000;
 //}
 
-//// test for matrix comparison operators
-//TEST(matrix_comparison_operator_test, equality_operator) {
-//    linalg::Matrix mat1 = {{1, 2, 3}, {4, 5, 6}};
-//    linalg::Matrix mat2 = {{1, 2, 3}, {4, 5, 6}};
-//    linalg::Matrix mat3 = {{1, 2, 3}, {4, 5, 7}};
-//    EXPECT_TRUE(mat1 == mat2);
-//    EXPECT_FALSE(mat1 == mat3);
-//    EXPECT_FALSE(mat1 != mat2);
-//    EXPECT_TRUE(mat1 != mat3);
-//    EXPECT_TRUE(mat1 == mat1);
-//    EXPECT_FALSE(mat1 != mat1);
-//}
-//
 //// test for matrix arithmetic operators
-//class matrix_arithmetic_test : public ::testing::Test {
-//protected:
-//    void SetUp() override {
-//        mat1 = {{0, 1, 7}, {4, 3, 0}};
-//        mat2 = {{3, 2, 5}, {0, 0, -3}};
-//        mat3 = {{1, 0.5, -5, 1}, {0, 0, -3, 2}};
-//        mat6 = {{1, 0.5, -5}, {0, 0, -3}};
-//    }
-//    linalg::Matrix mat1, mat2, mat3, mat4, mat5, mat6;
-//};
-//
-//TEST_F(matrix_arithmetic_test, addition) {
-//    linalg::Matrix result = mat1 + mat2;
-//    linalg::Matrix expected = {{3, 3, 12}, {4, 3, -3}};
-//    EXPECT_EQ(result, expected);
-//    EXPECT_THROW({ mat1 + mat3;}, std::runtime_error);
-//    mat1 += mat2;
-//    EXPECT_EQ(mat1, expected);
-//    EXPECT_THROW({ mat1 += mat3;}, std::runtime_error);
-//    EXPECT_THROW(mat4 += mat5, std::runtime_error);
-//    EXPECT_THROW(mat4 + mat5, std::runtime_error);
-//    result = mat2 + mat6 + mat6;
-//    expected = {{5, 3, -5}, {0, 0, -9}};
-//    EXPECT_EQ(result, expected);
-//    mat2 += mat6 += mat6;
-//    EXPECT_EQ(mat2, expected);
-//}
-//
-//TEST_F(matrix_arithmetic_test, subtraction) {
-//    linalg::Matrix result = mat1 - mat2;
-//    linalg::Matrix expected = {{-3, -1, 2}, {4, 3, 3}};
-//    EXPECT_EQ(result, expected);
-//    EXPECT_THROW({ mat1 - mat3;}, std::runtime_error);
-//    mat1 -= mat2;
-//    EXPECT_EQ(mat1, expected);
-//    EXPECT_THROW({ mat1 -= mat3;}, std::runtime_error);
-//    EXPECT_THROW(mat4 -= mat5, std::runtime_error);
-//    EXPECT_THROW(mat4 - mat5, std::runtime_error);
-//    result = mat2 - mat6 - mat6;
-//    expected = {{1, 1, 15}, {0, 0, 3}};
-//    EXPECT_EQ(result, expected);
-//    mat2 -= mat6 -= mat6;
-//    EXPECT_EQ(mat2, mat2);
-//}
-//
+
 //TEST_F(matrix_arithmetic_test, scalar_multiplication) {
 //    linalg::Matrix result = mat1 * 2;
 //    linalg::Matrix expected = {{0, 2, 14}, {8, 6, 0}};
