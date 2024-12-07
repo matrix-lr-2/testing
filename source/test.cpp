@@ -1,81 +1,8 @@
-//#include <matrix.h>
-//#include <gtest/gtest.h>
 //// function for comparing double numbers
 //static bool are_equal(double a, double b) {
 //    return std::abs(a - b) <= std::numeric_limits<double>::epsilon() * 100000;
 //}
 
-//// test for matrix arithmetic operators
-
-//TEST_F(matrix_arithmetic_test, scalar_multiplication) {
-//    linalg::Matrix result = mat1 * 2;
-//    linalg::Matrix expected = {{0, 2, 14}, {8, 6, 0}};
-//    EXPECT_EQ(result, expected);
-//    result = 2 * mat1;
-//    EXPECT_EQ(result, expected);
-//    mat1 *= 2;
-//    EXPECT_EQ(mat1, expected);
-//    result = mat1 * 0.5;
-//    expected = {{0, 1, 7}, {4, 3, 0}};
-//    EXPECT_EQ(result, expected);
-//    mat1 *= 0.5;
-//    EXPECT_EQ(mat1, expected);
-//    result = mat1 * 0;
-//    expected = {{0, 0, 0}, {0, 0, 0}};
-//    EXPECT_EQ(result, expected);
-//    mat1 *= 0;
-//    EXPECT_EQ(mat1, expected);
-//    result = mat3 * 1;
-//    expected = {{1, 0.5, -5, 1}, {0, 0, -3, 2}};
-//    EXPECT_EQ(result, expected);
-//    mat3 *= 1;
-//    EXPECT_EQ(mat3, expected);
-//    result = mat2 * -1;
-//    expected = {{-3, -2, -5}, {0, 0, 3}};
-//    EXPECT_EQ(result, expected);
-//    mat2 *= -1;
-//    EXPECT_EQ(mat2, expected);
-//    result = mat6 * -2;
-//    expected = {{-2, -1, 10}, {0, 0, 6}};
-//    EXPECT_EQ(result, expected);
-//    result = -2 * mat6;
-//    EXPECT_EQ(result, expected);
-//    mat6 *= -2;
-//    EXPECT_EQ(mat6, expected);
-//    result = mat6 * -0.5;
-//    expected = {{1, 0.5, -5}, {0, 0, -3}};
-//    EXPECT_EQ(result, expected);
-//    mat6 *= -0.5;
-//    EXPECT_EQ(mat6, expected);
-//    EXPECT_THROW(2 * mat5, std::runtime_error);
-//    EXPECT_THROW(mat5 * 2, std::runtime_error);
-//    EXPECT_THROW(mat5 *= 2;, std::runtime_error);
-//}
-//
-//TEST_F(matrix_arithmetic_test, matrix_multiplication) {
-//    EXPECT_THROW({ mat1 * mat2;}, std::runtime_error);
-//    EXPECT_THROW({ mat1 *= mat2;}, std::runtime_error);
-//    linalg::Matrix e = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-//    linalg::Matrix e1 = {{1, 0}, {0, 1}};
-//    EXPECT_EQ(e * e, e);
-//    EXPECT_EQ(e *= e, e);
-//    EXPECT_EQ(mat1 * e, mat1);
-//    EXPECT_EQ(e1 * mat1, mat1);
-//    EXPECT_EQ(mat1 *= e, mat1);
-//    EXPECT_EQ(e1 *= mat1, mat1);
-//    EXPECT_THROW(mat4 * mat5, std::runtime_error);
-//    e1 = {{1, 0}, {0, 1}};
-//    linalg::Matrix mat7 = {{7, 4}, {5, 3}};
-//    linalg::Matrix inv_mat7 = {{3, -4}, {-5, 7}};
-//    EXPECT_EQ(mat7 * inv_mat7, e1);
-//    EXPECT_EQ(inv_mat7 * mat7, e1);
-//    linalg::Matrix zero = {{0, 0}, {0, 0}};
-//    EXPECT_EQ(mat7 * zero, zero);
-//    EXPECT_EQ(zero * mat7, zero);
-//    linalg::Matrix mat8 = {{1, 2}, {3, 4}, {1, 1}};
-//    EXPECT_EQ(mat1 * mat8, linalg::Matrix({{10, 11}, {13, 20}}));
-//}
-//
 //// tests for matrix methods
 //class matrix_method_test_1 : public ::testing::Test {
 //protected:
@@ -243,9 +170,3 @@
 //    EXPECT_EQ(result, expected);
 //    EXPECT_THROW(m.reduced_row_echelon_form(), std::runtime_error);
 //}
-//
-////int main(int argc, char **argv) {
-////    ::testing::InitGoogleTest(&argc, argv);
-////    std::cout << "iugyiub";
-////    return RUN_ALL_TESTS();
-////}
