@@ -1,8 +1,3 @@
-//// function for comparing double numbers
-//static bool are_equal(double a, double b) {
-//    return std::abs(a - b) <= std::numeric_limits<double>::epsilon() * 100000;
-//}
-
 //// tests for matrix methods
 //class matrix_method_test_1 : public ::testing::Test {
 //protected:
@@ -12,72 +7,6 @@
 //    linalg::Matrix e = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 //    linalg::Matrix  m;
 //};
-//
-//TEST_F(matrix_method_test_1, reshape) {
-//    not_singular_squared.reshape(2, 2);
-//    EXPECT_EQ(not_singular_squared, not_singular_squared);
-//    not_singular_squared.reshape(1, 4);
-//    EXPECT_EQ(not_singular_squared, linalg::Matrix({{7, 4, 5, 3}}));
-//    not_squared.reshape(3, 2);
-//    EXPECT_EQ(not_squared, linalg::Matrix({{1, 2}, {3, 4}, {5, 6}}));
-//    not_singular_squared.reshape(4, 1);
-//    linalg::Matrix expected(4, 1);
-//    expected(0, 0) = 7;
-//    expected(1, 0) = 4;
-//    expected(2, 0) = 5;
-//    expected(3, 0) = 3;
-//    EXPECT_EQ(not_singular_squared, expected);
-//    EXPECT_THROW(e.reshape(0, 9), std::runtime_error);
-//    EXPECT_THROW(singular_squared.reshape(3, 9), std::runtime_error);
-//    EXPECT_THROW(m.reshape(0, 2), std::runtime_error);
-//    EXPECT_THROW(m.reshape(1, 2), std::runtime_error);
-//}
-//
-//TEST_F(matrix_method_test_1, element_power) {
-//    e.element_power(0);
-//    EXPECT_EQ(e, linalg::Matrix({{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}));
-//    e = not_squared.element_power(2);
-//    EXPECT_EQ(e, linalg::Matrix({{1, 4, 9}, {16, 25, 36}}));
-//    EXPECT_THROW(m.element_power(3), std::runtime_error);
-//}
-//
-//TEST_F(matrix_method_test_1, sum) {
-//    EXPECT_THROW(m.sum(), std::runtime_error);
-//    EXPECT_EQ(not_squared.sum(), 21);
-//    EXPECT_EQ(e.sum(), 3);
-//}
-//
-//TEST_F(matrix_method_test_1, norm) {
-//    EXPECT_THROW(m.norm(), std::runtime_error);
-//    EXPECT_EQ(not_squared.norm(), 9.539392014169456);
-//    EXPECT_EQ(e.norm(), 1.7320508075688772);
-//}
-//
-//TEST_F(matrix_method_test_1, trace) {
-//    EXPECT_THROW(m.trace(), std::runtime_error);
-//    EXPECT_THROW(not_squared.trace(), std::runtime_error);
-//    EXPECT_EQ(e.trace(), 3);
-//}
-//
-//TEST_F(matrix_method_test_1, swap) {
-//    not_squared.swap_rows(0, 1);
-//    EXPECT_EQ(not_squared, linalg::Matrix({{4, 5, 6}, {1, 2, 3}}));
-//    not_squared.swap_columns(0, 1);
-//    EXPECT_EQ(not_squared, linalg::Matrix({{5, 4, 6}, {2, 1, 3}}));
-//    linalg::Matrix tmp = singular_squared;
-//    linalg::Matrix m1 = singular_squared.swap_rows(0, 2);
-//    linalg::Matrix m2 = tmp.swap_rows(2, 0);
-//    EXPECT_EQ(m1, m2);
-//    linalg::Matrix tmp2 = singular_squared;
-//    linalg::Matrix m3 = singular_squared.swap_columns(1, 2);
-//    linalg::Matrix m4 = tmp2.swap_columns(2, 1);
-//    EXPECT_EQ(m3, m4);
-//    EXPECT_THROW(m.swap_rows(0, 1), std::runtime_error);
-//    EXPECT_THROW(m.swap_columns(0, 1), std::runtime_error);
-//    EXPECT_THROW(not_squared.swap_rows(0, 2), std::runtime_error);
-//    EXPECT_THROW(not_squared.swap_columns(3, 2), std::runtime_error);
-//}
-//
 //TEST_F(matrix_method_test_1, determinant) {
 //    EXPECT_TRUE(are_equal(not_singular_squared.det(), 1));
 //    EXPECT_EQ(singular_squared.det(), 0);

@@ -83,7 +83,7 @@ TEST(matrix_sum_test, sum_double) {
 TEST(matrix_sum_test, sum_bool) {
     linalg::Matrix<bool> mat = {{true, false}, {true, true}};
 
-    EXPECT_EQ(mat.sum(), true);
+    EXPECT_EQ(mat.sum(), 3);
 }
 
 TEST(matrix_norm_test, norm_int) {
@@ -119,7 +119,7 @@ TEST(matrix_trace_test, trace_double) {
 TEST(matrix_trace_test, trace_bool) {
     linalg::Matrix<bool> mat = {{true, false}, {false, true}};
 
-    EXPECT_EQ(mat.trace(), true);
+    EXPECT_EQ(mat.trace(), 2);
 }
 
 TEST(transpose_matrix, transpose_int) {
@@ -183,7 +183,7 @@ TEST(concatenate_matrix, concatenate_int_double) {
     linalg::Matrix<int> m1 = {{1, 2, 3}, {2, 0, 1}, {11, 2, 5}, {0, 0, 1}};
     linalg::Matrix<double> m2 = {{1.0, 2.0, 3.0, 4.0}, {2.0, 4.0, 6.0, 8.0}, {0.5, 1.0, 1.5, 2.0}, {1.0, 0.0, 1.0, 1.0}};
 
-    auto result = linalg::concatenate(m1, m2);
+    auto result = concatenate(m1, m2);
     linalg::Matrix<double> expected = {{1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 4.0},
                                        {2.0, 0.0, 1.0, 2.0, 4.0, 6.0, 8.0},
                                        {11.0, 2.0, 5.0, 0.5, 1.0, 1.5, 2.0},
@@ -195,7 +195,7 @@ TEST(concatenate_matrix, concatenate_int_bool) {
     linalg::Matrix<int> m1 = {{1, 2, 3}, {2, 0, 1}, {11, 2, 5}, {0, 0, 1}};
     linalg::Matrix<bool> m2 = {{true, false, true}, {false, true, false}, {true, true, false}, {false, true, true}};
 
-    auto result = linalg::concatenate(m1, m2);
+    auto result = concatenate(m1, m2);
     linalg::Matrix<int> expected = {{1, 2, 3, 1, 0, 1},
                                     {2, 0, 1, 0, 1, 0},
                                     {11, 2, 5, 1, 1, 0},
@@ -207,7 +207,7 @@ TEST(concatenate_matrix, concatenate_double_double) {
     linalg::Matrix<double> m1 = {{1.0, 2.0, 3.0}, {2.0, 0.0, 1.0}, {11.0, 2.0, 5.0}, {0.0, 0.0, 1.0}};
     linalg::Matrix<double> m2 = {{1.0, 2.0, 3.0, 4.0}, {2.0, 4.0, 6.0, 8.0}, {0.5, 1.0, 1.5, 2.0}, {1.0, 0.0, 1.0, 1.0}};
 
-    auto result = linalg::concatenate(m1, m2);
+    auto result = concatenate(m1, m2);
     linalg::Matrix<double> expected = {{1.0, 2.0, 3.0, 1.0, 2.0, 3.0, 4.0},
                                        {2.0, 0.0, 1.0, 2.0, 4.0, 6.0, 8.0},
                                        {11.0, 2.0, 5.0, 0.5, 1.0, 1.5, 2.0},
@@ -236,6 +236,49 @@ TEST(concatenate_matrix, throws) {
     EXPECT_THROW(linalg::concatenate(m3, m2), std::runtime_error);
     EXPECT_THROW(linalg::concatenate(m2, m3), std::runtime_error);
     EXPECT_THROW(linalg::concatenate(m3, m3), std::runtime_error);
+}
+
+static bool tests_equal(double a, double b) {
+    return (a - b) < 10e-11;
+}
+
+TEST(determinant, det_int) {
+    linalg::Matrix not_singular_squared = {{7, 4}, {5, 3}};
+    linalg::Matrix not_squared = {{1, 2, 3}, {4, 5, 6}};
+    linalg::Matrix singular_squared = {{3, 3, 3}, {1, 1, 1}, {2, 2, 2}};
+    linalg::Matrix e = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    linalg::Matrix<int>  m;
+    EXPECT_TRUE(tests_equal(not_singular_squared.det(), 1));
+    EXPECT_EQ(singular_squared.det(), 0);
+    EXPECT_EQ(e.det(), 1);
+    linalg::Matrix m1 = {{1, 2, 3, 4, 5, 1}, {3, 7, 8, 9, 10, 2}, {11, 12, 13, 7, 15, 3}, {1, 17, 8, 13, 3, 4}, {1, 0, 3, 0, 0, 5}, {1, 2, 3, 4, 5, 6}};
+    EXPECT_TRUE(tests_equal(m1.det(), 1810));
+    EXPECT_THROW(not_squared.det(), std::runtime_error);
+    EXPECT_THROW(m.det(), std::runtime_error);
+}
+
+TEST(determinant, det_double) {
+    linalg::Matrix not_singular_squared = {{7.345, 4.876}, {5.12, 3.456}};
+    linalg::Matrix not_squared = {{1.234, 2.345, 3.456}, {4.567, 5.678, 6.789}};
+    linalg::Matrix singular_squared = {{3.141, 3.141, 3.141}, {1.618, 1.618, 1.618}, {2.718, 2.718, 2.718}};
+    linalg::Matrix e = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}};
+    linalg::Matrix m1 = {{1.234, 2.456, 3.678, 4.789, 5.901, 1.345}, {3.567, 7.678, 8.789, 9.123, 10.456, 2.234},
+                         {11.234, 12.345, 13.456, 7.123, 15.234, 3.345}, {1.567, 17.234, 8.123, 13.456, 3.567, 4.234},
+                         {1.789, 0.987, 3.456, 0.123, 0.876, 5.678}, {1.123, 2.345, 3.567, 4.789, 5.234, 6.345}};
+    EXPECT_TRUE(tests_equal(not_singular_squared.det(), 0.4192));
+    EXPECT_TRUE(tests_equal(singular_squared.det(), 0.0));
+    EXPECT_EQ(e.det(), 1.0);
+    EXPECT_TRUE(tests_equal(m1.det(), 1787.48));
+    EXPECT_THROW(not_squared.det(), std::runtime_error);
+}
+
+TEST(determinant, det_bool) {
+    linalg::Matrix not_singular_squared = {{true, false}, {false, true}};
+    linalg::Matrix not_squared = {{true, false, true}, {false, true, false}};
+    linalg::Matrix singular_squared = {{true, true}, {true, true}};
+    EXPECT_TRUE(not_singular_squared.det());
+    EXPECT_FALSE(singular_squared.det());
+    EXPECT_THROW(not_squared.det(), std::runtime_error);
 }
 
 // TEST(power_matrix, power_int) {

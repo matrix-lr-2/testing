@@ -108,23 +108,18 @@ TEST(swap_columns_empty_matrix, swap_columns_empty) {
 
 TEST(capacity_test, capacity_less) {
     linalg::Matrix<int> mat = {{1, 2, 3}, {5, 6, 7}};
-    linalg::Matrix<int> mat2 = {{1, 2, 3, 5, 6}};
+    linalg::Matrix<int> mat2 = {{1, 2, 3}, {5, 6, 7}};
     mat.reserve(5);
+    EXPECT_EQ(mat.capacity(), 6);
     EXPECT_TRUE(mat == mat2);
 }
 
 TEST(capacity_test, capacity_less_2) {
     linalg::Matrix<int> mat = {{1, 2, 3}, {5, 6, 7}, {1, 0, -1}};
-    linalg::Matrix<int> mat2 = {{1, 2, 3}, {5, 6, 7}};
+    linalg::Matrix<int> mat2 = {{1, 2, 3}, {5, 6, 7}, {1, 0, -1}};
     mat.reserve(6);
+    EXPECT_EQ(mat.capacity(), 9);
     EXPECT_TRUE(mat == mat2);
-}
-
-TEST(capacity_test, capacity_zero) {
-    linalg::Matrix<int> mat = {{1, 2, 3}, {5, 6, 7}};
-    mat.reserve(0);
-    EXPECT_TRUE(mat.empty());
-    EXPECT_EQ(mat.capacity(), 0);
 }
 
 TEST(capacity_test, capacity_the_same) {
@@ -161,7 +156,7 @@ TEST(clear, clear) {
     EXPECT_EQ(mat2.columns(), 0);
 }
 
-TEST(shrink_to_fit, shrink_to_fit) {
+TEST(shrink_to_fit, bigger_to_smaller) {
     linalg::Matrix<int> mat(100);
     linalg::Matrix<short> mat2 = {{1, 2, 3}, {0, 0, 0}, {52, 52, 52}};
     mat = mat2;
@@ -169,6 +164,15 @@ TEST(shrink_to_fit, shrink_to_fit) {
     EXPECT_EQ(mat.size(), 9);
     EXPECT_EQ(mat.rows(), 3);
     EXPECT_EQ(mat.columns(), 3);
+    mat.shrink_to_fit();
+    EXPECT_EQ(mat.capacity(), 9);
+    EXPECT_EQ(mat.size(), 9);
+    EXPECT_EQ(mat.rows(), 3);
+    EXPECT_EQ(mat.columns(), 3);
+}
+
+TEST(shrink_to_fit, equal) {
+    linalg::Matrix<short> mat = {{1, 2, 3}, {0, 0, 0}, {52, 52, 52}};
     mat.shrink_to_fit();
     EXPECT_EQ(mat.capacity(), 9);
     EXPECT_EQ(mat.size(), 9);
@@ -187,9 +191,9 @@ TEST(reshape_matrix, increase_size) {
     EXPECT_EQ(mat.columns(), 3);
     EXPECT_EQ(mat(0, 0), 1);
     EXPECT_EQ(mat(0, 1), 2);
-    EXPECT_EQ(mat(0, 2), 3);
-    EXPECT_EQ(mat(1, 0), 4);
-    EXPECT_EQ(mat(1, 1), 0);
+    EXPECT_EQ(mat(0, 2), 0);
+    EXPECT_EQ(mat(1, 0), 3);
+    EXPECT_EQ(mat(1, 1), 4);
     EXPECT_EQ(mat(1, 2), 0);
     EXPECT_EQ(mat(2, 0), 0);
     EXPECT_EQ(mat(2, 1), 0);
@@ -269,10 +273,10 @@ TEST(reshape_matrix, expand_with_default_values) {
     EXPECT_EQ(mat.columns(), 4);
     EXPECT_EQ(mat(0, 0), 1);
     EXPECT_EQ(mat(0, 1), 2);
-    EXPECT_EQ(mat(0, 2), 3);
-    EXPECT_EQ(mat(0, 3), 4);
-    EXPECT_EQ(mat(1, 0), 0);
-    EXPECT_EQ(mat(1, 1), 0);
+    EXPECT_EQ(mat(0, 2), 0);
+    EXPECT_EQ(mat(0, 3), 0);
+    EXPECT_EQ(mat(1, 0), 3);
+    EXPECT_EQ(mat(1, 1), 4);
     EXPECT_EQ(mat(1, 2), 0);
     EXPECT_EQ(mat(1, 3), 0);
     EXPECT_EQ(mat(2, 0), 0);
