@@ -212,7 +212,7 @@ TEST(move_assignment, move_to_empty) {
 class matrix_index_test : public ::testing::Test {
 protected:
     linalg::Matrix<int> m1 = {{1, 2, 3}, {4, 5, 6}};
-    linalg::Matrix<double> m2 = {{1.5, 2.2, 3.3}, {4, 5.4, 6.3}};
+    linalg::Matrix<double> m2 = {{1.5, 2.2, 3.3}, {4.0, 5.4, 6.3}};
     linalg::Matrix<bool> m;
 };
 

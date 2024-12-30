@@ -295,6 +295,14 @@ TEST(init_list_nd_constructor, constructor_int) {
     EXPECT_EQ(mat3(1, 0), 2);
     EXPECT_EQ(mat3(2, 0), 3);
     EXPECT_EQ(mat3(3, 0), 4);
+    linalg::Matrix<double> mat4({{1}, {2}, {3}});
+    EXPECT_EQ(mat4.rows(), 3);
+    EXPECT_EQ(mat4.columns(), 1);
+    EXPECT_EQ(mat4.capacity(), 3);
+    EXPECT_FALSE(mat4.empty());
+    EXPECT_EQ(mat4(0, 0), 1);
+    EXPECT_EQ(mat4(1, 0), 2);
+    EXPECT_EQ(mat4(2, 0), 3);
 }
 
 TEST(init_list_nd_constructor, constructor_double) {
