@@ -281,68 +281,137 @@ TEST(determinant, det_bool) {
     EXPECT_THROW(not_squared.det(), std::runtime_error);
 }
 
-// TEST(power_matrix, power_int) {
-//     linalg::Matrix<int> mat = {{1, 2}, {3, 4}};
-//
-//     auto result = linalg::power(mat, 2);
-//     linalg::Matrix<int> expected = {{7, 10}, {15, 22}};
-//     EXPECT_EQ(result, expected);
-//
-//     result = linalg::power(mat, 3);
-//     expected = {{37, 54}, {81, 118}};
-//     EXPECT_EQ(result, expected);
-//
-//     result = linalg::power(mat, 0);
-//     linalg::Matrix<int> expected_identity = {{1, 0}, {0, 1}};
-//     EXPECT_EQ(result, expected_identity);
-//
-//     linalg::Matrix<int> mat_non_square = {{1, 2, 3}, {4, 5, 6}};
-//     EXPECT_THROW(linalg::power(mat_non_square, 2), std::runtime_error);
-//
-//     linalg::Matrix<int> mat_empty;
-//     EXPECT_THROW(linalg::power(mat_empty, 2), std::runtime_error);
-// }
-//
-// TEST(power_matrix, power_double) {
-//     linalg::Matrix<double> mat = {{1.0, 2.0}, {3.0, 4.0}};
-//
-//     auto result = linalg::power(mat, 2);
-//     linalg::Matrix<double> expected = {{7.0, 10.0}, {15.0, 22.0}};
-//     EXPECT_EQ(result, expected);
-//
-//     result = linalg::power(mat, 3);
-//     expected = {{37.0, 54.0}, {81.0, 118.0}};
-//     EXPECT_EQ(result, expected);
-//
-//     result = linalg::power(mat, 0);
-//     linalg::Matrix<double> expected_identity = {{1.0, 0.0}, {0.0, 1.0}};
-//     EXPECT_EQ(result, expected_identity);
-//
-//     linalg::Matrix<double> mat_non_square = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}};
-//     EXPECT_THROW(linalg::power(mat_non_square, 2), std::runtime_error);
-//
-//     linalg::Matrix<double> mat_empty;
-//     EXPECT_THROW(linalg::power(mat_empty, 2), std::runtime_error);
-// }
-//
-// TEST(power_matrix, power_bool) {
-//     linalg::Matrix<bool> mat = {{true, false}, {false, true}};
-//
-//     auto result = linalg::power(mat, 2);
-//     linalg::Matrix<bool> expected = {{true, false}, {false, true}};
-//     EXPECT_EQ(result, expected);
-//
-//     result = linalg::power(mat, 3);
-//     expected = {{true, false}, {false, true}};
-//     EXPECT_EQ(result, expected);
-//
-//     result = linalg::power(mat, 0);
-//     linalg::Matrix<bool> expected_identity = {{true, false}, {false, true}};
-//     EXPECT_EQ(result, expected_identity);
-//
-//     linalg::Matrix<bool> mat_non_square = {{true, false, true}, {false, true, false}};
-//     EXPECT_THROW(linalg::power(mat_non_square, 2), std::runtime_error);
-//
-//     linalg::Matrix<bool> mat_empty;
-//     EXPECT_THROW(linalg::power(mat_empty, 2), std::runtime_error);
-// }
+TEST(power_matrix, power_int) {
+    linalg::Matrix<int> mat = {{1, 2}, {3, 4}};
+    auto result = power(mat, 2);
+    linalg::Matrix<int> expected = {{7, 10}, {15, 22}};
+    EXPECT_EQ(result, expected);
+    result = power(mat, 3);
+    expected = {{37, 54}, {81, 118}};
+    EXPECT_EQ(result, expected);
+    result = power(mat, 0);
+    linalg::Matrix<int> expected_identity = {{1, 0}, {0, 1}};
+    EXPECT_EQ(result, expected_identity);
+    linalg::Matrix<int> mat_non_square = {{1, 2, 3}, {4, 5, 6}};
+    EXPECT_THROW(linalg::power(mat_non_square, 2), std::runtime_error);
+    linalg::Matrix<int> mat_empty;
+    EXPECT_THROW(linalg::power(mat_empty, 2), std::runtime_error);
+}
+
+TEST(power_matrix, power_double) {
+    linalg::Matrix<double> mat = {{1.5, 2.5}, {3.5, 4.5}};
+    auto result = power(mat, 2);
+    linalg::Matrix<double> expected = {{11., 15.}, {21., 29.}};
+    EXPECT_EQ(result, expected);
+    result = power(mat, 3);
+    expected = {{69.0, 95.0}, {133.0, 183.0}};
+    EXPECT_EQ(result, expected);
+    result = power(mat, 0);
+    linalg::Matrix<double> expected_identity = {{1.0, 0.0}, {0.0, 1.0}};
+    EXPECT_EQ(result, expected_identity);
+    linalg::Matrix<double> mat_non_square = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}};
+    EXPECT_THROW(linalg::power(mat_non_square, 2), std::runtime_error);
+    linalg::Matrix<double> mat_empty;
+    EXPECT_THROW(linalg::power(mat_empty, 2), std::runtime_error);
+}
+
+TEST(power_matrix, power_bool) {
+    linalg::Matrix<bool> mat = {{true, false}, {false, true}};
+    auto result = power(mat, 2);
+    linalg::Matrix<bool> expected = {{true, false}, {false, true}};
+    EXPECT_EQ(result, expected);
+    result = power(mat, 3);
+    expected = {{true, false}, {false, true}};
+    EXPECT_EQ(result, expected);
+    result = power(mat, 0);
+    linalg::Matrix<bool> expected_identity = {{true, false}, {false, true}};
+    EXPECT_EQ(result, expected_identity);
+    linalg::Matrix<bool> mat_non_square = {{true, false, true}, {false, true, false}};
+    EXPECT_THROW(linalg::power(mat_non_square, 2), std::runtime_error);
+    linalg::Matrix<bool> mat_empty;
+    EXPECT_THROW(linalg::power(mat_empty, 2), std::runtime_error);
+}
+
+TEST(power_matrix, negative_power) {
+    linalg::Matrix m1 = {{1, 2, 3}, {2, 0, 1}, {11, 2, 5}, {0, 0, 1}};
+    linalg::Matrix<double> m2 = {{1, 2, 3, 4}, {2, 4, 6, 8}, {0.5, 1, 1.5, 2}, {1, 0, 1, 1}};
+    linalg::Matrix<double> m3 = {{1, 3, -1}, {-4, 2, 0}, {1, 9, -3.2}};
+    linalg::Matrix e = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
+    linalg::Matrix<int> m;
+    EXPECT_EQ(power(m3, 3), linalg::Matrix<double>({{-9.8, -16.2, 4.96}, {24, -16, -0.8}, {2.24, -47.04, 8.632}}));
+    EXPECT_EQ(power(m3, 4), linalg::Matrix({{59.96, -17.16, -6.072}, {87.2, 32.8, -21.44}, {199.032, -9.672	, -29.8624}}));
+    EXPECT_EQ(power(m2, 0), e);
+    EXPECT_EQ(power(m2, 1), m2);
+    EXPECT_EQ(power(transpose(m3), -1), transpose(power(m3, -1)));
+    m2 = {{1, 2, 0}, {3, 1, 5}, {0, 1, 1}};
+    EXPECT_EQ(power(m2, -1), invert(m2));
+    EXPECT_EQ(power(m2, -2), power(invert(m2), 2));
+    EXPECT_EQ(power(power(m3, -1), 6), power(power(m3, -2), 3));
+    EXPECT_EQ(power(m2 * m3, -1), power(m3, -1) * power(m2, -1));
+    EXPECT_THROW(power(m1, 2), std::runtime_error);
+    EXPECT_THROW(power(m, 3), std::runtime_error);
+}
+
+TEST(invert_matrix, invert) {
+    linalg::Matrix not_singular_squared = {{7, 4}, {5, 3}};
+    linalg::Matrix not_squared = {{1, 2, 3}, {4, 5, 6}};
+    linalg::Matrix singular_squared = {{3, 3, 3}, {1, 1, 1}, {2, 2, 2}};
+    linalg::Matrix e = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+    linalg::Matrix<int>  m;
+    EXPECT_EQ(invert(not_singular_squared), linalg::Matrix({{3, -4}, {-5, 7}}));
+    EXPECT_EQ(invert(e), e);
+    linalg::Matrix m1 = {{2, 0, 1}, {0, -3, -1}, {-2, 4, 0}};
+    EXPECT_EQ(invert(m1), linalg::Matrix<double>({{2, 2, 1.5}, {1, 1, 1}, {-3, -4, -3}}));
+    linalg::Matrix m2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    EXPECT_THROW(invert(m2), std::runtime_error);
+    EXPECT_THROW(invert(singular_squared), std::runtime_error);
+    EXPECT_THROW(invert(not_squared), std::runtime_error);
+    EXPECT_THROW(invert(m), std::runtime_error);
+}
+
+TEST(invert_matrix, invert_bool) {
+    linalg::Matrix<bool> not_singular_squared = {{true, false}, {false, true}};
+    linalg::Matrix<bool> singular_squared = {{true, true}, {true, true}};
+    linalg::Matrix<bool> e = {{true, false, false}, {false, true, false}, {false, false, true}};
+    EXPECT_EQ(invert(not_singular_squared), linalg::Matrix<bool>({{true, false}, {false, true}}));
+    EXPECT_EQ(invert(e), e);
+    EXPECT_THROW(invert(singular_squared), std::runtime_error);
+}
+
+class matrix_method_test_additional : public ::testing::Test {
+protected:
+    linalg::Matrix<int> m1 = {{1, 2, 3}, {2, 0, 1}, {11, 2, 5}, {0, 0, 1}};
+    linalg::Matrix<double> m2 = {{1, 2, 3, 4}, {2, 4, 6, 8}, {0.5, 1, 1.5, 2}, {1, 0, 1, 1}};
+    linalg::Matrix<double> m3 = {{1, 3, -1}, {-4, 2, 0}, {1, 9, -3.2}};
+    linalg::Matrix<int> e = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
+    linalg::Matrix<bool> m;
+};
+
+TEST_F(matrix_method_test_additional, upperTriangleForm) {
+    linalg::Matrix result = m2.upper_triangle_form();
+    linalg::Matrix expected = {{2, 4, 6, 8}, {0, -2, -2, -3}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    EXPECT_EQ(result, expected);
+    m3 = {1};
+    EXPECT_EQ(m3.upper_triangle_form(), m3);
+    result = e.upper_triangle_form();
+    EXPECT_EQ(result, e);
+    EXPECT_THROW(m.upper_triangle_form(), std::runtime_error);
+}
+
+TEST_F(matrix_method_test_additional, rank) {
+    EXPECT_EQ(m1.rank(), 3);
+    EXPECT_EQ(m2.rank(), 2);
+    EXPECT_EQ(m3.rank(), 3);
+    EXPECT_EQ(e.rank(), 4);
+    EXPECT_THROW(m.rank(), std::runtime_error);
+}
+
+TEST_F(matrix_method_test_additional, reduced_row_echelon_form) {
+    linalg::Matrix result = m2.reduced_row_echelon_form();
+    linalg::Matrix<double> expected = {{1, 0, 1, 1}, {0, 1, 1, 1.5}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    EXPECT_EQ(result, expected);
+    result = m1.reduced_row_echelon_form();
+    expected = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {0, 0, 0}};
+    EXPECT_EQ(result, expected);
+    EXPECT_THROW(m.reduced_row_echelon_form(), std::runtime_error);
+}
