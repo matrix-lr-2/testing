@@ -408,7 +408,7 @@ TEST_F(matrix_method_test_additional, rank) {
 
 TEST_F(matrix_method_test_additional, reduced_row_echelon_form) {
     linalg::Matrix result = m2.reduced_row_echelon_form();
-    linalg::Matrix<double> expected = {{1, 0.0, 1.0, 1.0}, {0.0, 1.0, 1.0, 1.5}, {0.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 0.0}};
+    linalg::Matrix<double> expected = {{1.0, 0.0, 1.0, 1.0}, {0.0, 1.0, 1.0, 1.5}, {0.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 0.0}};
     linalg::Matrix<double> expected1 = {{1}, {2}, {3}};
     EXPECT_EQ(result, expected);
     result = m1.reduced_row_echelon_form();
