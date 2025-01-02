@@ -162,7 +162,7 @@ TEST(output_operator, empty_column_matrix) {
     EXPECT_EQ(ss.str(), expected_output);
 }
 
-TEST(output_operator, large_bool_matrix) {
+TEST(output_operator, bool_matrix) {
     linalg::Matrix<bool> mat(5, 5);
     mat(0, 0) = true;
     mat(0, 1) = false;
@@ -197,5 +197,17 @@ TEST(output_operator, large_bool_matrix) {
             "|1 0 1 0 1|\n"
             "|0 1 0 1 0|\n"
             "|1 0 1 0 1|\n";
+    EXPECT_EQ(ss.str(), expected_output);
+}
+
+TEST(output_operator, bool_alpha) {
+    linalg::Matrix<bool> mat(2, 2);
+    mat(0, 0) = true;
+    mat(0, 1) = false;
+    mat(1, 0) = false;
+    mat(1, 1) = true;
+    std::stringstream ss;
+    ss << std::boolalpha << mat;
+    std::string expected_output = "| true false|\n|false  true|\n";
     EXPECT_EQ(ss.str(), expected_output);
 }
