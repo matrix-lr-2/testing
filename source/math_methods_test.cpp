@@ -416,3 +416,43 @@ TEST_F(matrix_method_test_additional, reduced_row_echelon_form) {
     EXPECT_EQ(result, expected);
     EXPECT_THROW(m.reduced_row_echelon_form(), std::runtime_error);
 }
+
+TEST(rotation_3d_test, angle_pi) {
+    linalg::Matrix<double> mat = {{-0.6, 0.8, 0.0}, {0.8, 0.6, 0.0}, {0.0, 0.0, -1.0}};
+    std::tuple<std::string, double, double, double, double> result = mat.rotation_3d();
+    EXPECT_EQ(std::get<0>(result), "rotation");
+    EXPECT_TRUE(tests_equal(std::get<1>(result), 1));
+    EXPECT_TRUE(tests_equal(std::get<2>(result), 2));
+    EXPECT_TRUE(tests_equal(std::get<3>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<4>(result), 180));
+}
+
+TEST(rotation_3d_test, stadard_case) {
+    linalg::Matrix<double> mat = {{0.0, 0.0, 1.0}, {1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}};
+    std::tuple<std::string, double, double, double, double> result = mat.rotation_3d();
+    EXPECT_EQ(std::get<0>(result), "rotation");
+    EXPECT_TRUE(tests_equal(std::get<1>(result), 1));
+    EXPECT_TRUE(tests_equal(std::get<2>(result), 1));
+    EXPECT_TRUE(tests_equal(std::get<3>(result), 1));
+    EXPECT_TRUE(tests_equal(std::get<4>(result), 120));
+}
+
+TEST(rotation_3d_test, angle_90) {
+    linalg::Matrix<double> mat = {{0.0, 0.0, 1.0}, {0.0, 1.0, 0.0}, {-1.0, 0.0, 0.0}};
+    std::tuple<std::string, double, double, double, double> result = mat.rotation_3d();
+    EXPECT_EQ(std::get<0>(result), "rotation");
+    EXPECT_TRUE(tests_equal(std::get<1>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<2>(result), 1));
+    EXPECT_TRUE(tests_equal(std::get<3>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<4>(result), 90));
+}
+
+TEST(rotation_3d_test, identity) {
+    linalg::Matrix<double> mat(3, 3, 1);
+    std::tuple<std::string, double, double, double, double> result = mat.rotation_3d();
+    EXPECT_EQ(std::get<0>(result), "identity transformation");
+    EXPECT_TRUE(tests_equal(std::get<1>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<2>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<3>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<4>(result), 0));
+}
