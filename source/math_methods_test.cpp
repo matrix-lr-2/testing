@@ -456,3 +456,13 @@ TEST(rotation_3d_test, identity) {
     EXPECT_TRUE(tests_equal(std::get<3>(result), 0));
     EXPECT_TRUE(tests_equal(std::get<4>(result), 0));
 }
+
+TEST(rotation_3d_test, angle_90_float) {
+    linalg::Matrix<float> mat = {{0.0, 0.0, 1.0}, {0.0, 1.0, 0.0}, {-1.0, 0.0, 0.0}};
+    std::tuple<std::string, float, float, float, float> result = mat.rotation_3d();
+    EXPECT_EQ(std::get<0>(result), "rotation");
+    EXPECT_TRUE(tests_equal(std::get<1>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<2>(result), 1));
+    EXPECT_TRUE(tests_equal(std::get<3>(result), 0));
+    EXPECT_TRUE(tests_equal(std::get<4>(result), 90));
+}
