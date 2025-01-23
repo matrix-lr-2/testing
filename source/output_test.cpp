@@ -6,7 +6,7 @@ TEST(output_operator, empty_matrix) {
     linalg::Matrix<int> mat;
     std::stringstream ss;
     ss << mat;
-    EXPECT_EQ(ss.str(), "|Matrix is empty|\n");
+    EXPECT_EQ(ss.str(), "|empty|\n");
 }
 
 TEST(output_operator, integer_matrix) {
@@ -77,7 +77,7 @@ TEST(output_operator, bool_matrix_empty) {
     linalg::Matrix<bool> mat;
     std::stringstream ss;
     ss << mat;
-    EXPECT_EQ(ss.str(), "|Matrix is empty|\n");
+    EXPECT_EQ(ss.str(), "|empty|\n");
 }
 
 TEST(output_operator, large_exponential_floating_point_matrix) {

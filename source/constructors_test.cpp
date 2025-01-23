@@ -80,7 +80,8 @@ TEST(two_parameter_constructor, constructor_int) {
     EXPECT_EQ(mat.size(), 12);
     EXPECT_EQ(mat.capacity(), 12);
     EXPECT_FALSE(mat.empty());
-    EXPECT_THROW(linalg::Matrix<int>(0, 0), std::runtime_error);
+    linalg::Matrix<int> mat2(0, 0);
+    EXPECT_TRUE(mat2.empty());
 }
 
 TEST(two_parameter_constructor, constructor_double) {
@@ -90,7 +91,8 @@ TEST(two_parameter_constructor, constructor_double) {
     EXPECT_EQ(mat.size(), 12);
     EXPECT_EQ(mat.capacity(), 12);
     EXPECT_FALSE(mat.empty());
-    EXPECT_THROW(linalg::Matrix<double>(0, 0), std::runtime_error);
+    linalg::Matrix<double> mat2(0, 0);
+    EXPECT_TRUE(mat2.empty());
 }
 
 TEST(two_parameter_constructor, constructor_bool) {
@@ -100,7 +102,8 @@ TEST(two_parameter_constructor, constructor_bool) {
     EXPECT_EQ(mat.size(), 12);
     EXPECT_EQ(mat.capacity(), 12);
     EXPECT_FALSE(mat.empty());
-    EXPECT_THROW(linalg::Matrix<bool>(0, 0), std::runtime_error);
+    linalg::Matrix<bool> mat2(0, 0);
+    EXPECT_TRUE(mat2.empty());
 }
 
 TEST(diagonal_matrix_constructor, constructor_int) {
